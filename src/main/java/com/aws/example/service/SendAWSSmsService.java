@@ -48,10 +48,10 @@ public class SendAWSSmsService {
 			String phoneNumber = credentials.getString("MOBILE_NO");
 			Map<String, MessageAttributeValue> smsAttributes = new HashMap<String, MessageAttributeValue>();
 			
-			smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue().withStringValue("Transactional") // Sets
+			smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue().withStringValue("Transactional")
 					.withDataType("String"));
 			smsAttributes.put("AWS.SNS.SMS.SenderID",
-					new MessageAttributeValue().withStringValue(credentials.getString("AWS_SENDER_ID")) // The
+					new MessageAttributeValue().withStringValue(credentials.getString("AWS_SENDER_ID")) 
 							.withDataType("String"));
 
 			result = sns.publish(new PublishRequest().withMessage(message).withPhoneNumber(phoneNumber)
@@ -79,10 +79,10 @@ public class SendAWSSmsService {
 					credentials.getString("AWS_REGION_VALUE"));
 			Map<String, MessageAttributeValue> smsAttributes = new HashMap<>();
 			// set SMS attributes
-			smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue().withStringValue("Transactional") // Sets
+			smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue().withStringValue("Transactional")
 					.withDataType("String"));
 			smsAttributes.put("AWS.SNS.SMS.SenderID",
-					new MessageAttributeValue().withStringValue(credentials.getString("AWS_SENDER_ID")) // The
+					new MessageAttributeValue().withStringValue(credentials.getString("AWS_SENDER_ID"))
 							.withDataType("String"));
 
 			result = amazonSNSClient
