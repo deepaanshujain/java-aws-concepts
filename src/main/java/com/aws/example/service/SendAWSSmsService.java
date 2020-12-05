@@ -16,7 +16,8 @@ import com.amazonaws.services.sns.model.PublishResult;
 @Service
 public class SendAWSSmsService {
 
-	public Map<String, String> sendSMS(String mobileNo, String msg, String region, String sender, String type) {
+	public Map<String, String> sendSMS(String mobileNo, String msg, String region, String sender, String type, String accessKeyId, 
+			String secretAccessKey) {
 		Map<String, String> response;
 		JSONObject credentials=new JSONObject();  
 
@@ -28,9 +29,8 @@ public class SendAWSSmsService {
 		if(type.equals("IAM_ROLE")) {
 			response = sendAwsSmsWithIAMRole(credentials);
 		} else {
-			credentials.put("AWS_ACCESS_KEY_ID", "access_key");
-			credentials.put("AWS_SECRET_ACCESS_KEY", "secret_access_key");
-			credentials.put("AWS_SENDER_ID", "sender_id");
+			credentials.put("AWS_ACCESS_KEY_ID", accessKeyId);
+			credentials.put("AWS_SECRET_ACCESS_KEY", secretAccessKey);
 			
 			response = sendAwsSmsWithCredentials(credentials);
 		}

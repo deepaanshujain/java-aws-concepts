@@ -22,11 +22,13 @@ public class AWSController {
 	
 	
 	@GetMapping("/sendSMS")
-	public ServiceRespVO doPayment(HttpServletRequest request,
+	public ServiceRespVO sendSMS(HttpServletRequest request,
 			HttpServletResponse response, @RequestParam(required = false, value = "mobileNo") String mobileNo, 
 			@RequestParam(required = false, value = "message") String message, @RequestParam(required = false, value = "region") String region, 
-			@RequestParam(required = false, value = "sender") String sender, @RequestParam(required = false, value = "type") String type) {
-		Map<String, String> responseSMS = sendAWSSmsService.sendSMS(mobileNo, message, region, sender, type);
+			@RequestParam(required = false, value = "sender") String sender, @RequestParam(required = false, value = "type") String type,
+			@RequestParam(required = false, value = "accessKeyId") String accessKeyId, 
+			@RequestParam(required = false, value = "secretAccessKey") String secretAccessKey) {
+		Map<String, String> responseSMS = sendAWSSmsService.sendSMS(mobileNo, message, region, sender, type, accessKeyId, secretAccessKey);
 		ServiceRespVO serviceResponse = new ServiceRespVO();
 		serviceResponse.setResponseData(responseSMS);
 		serviceResponse.setResponseCode(0);
